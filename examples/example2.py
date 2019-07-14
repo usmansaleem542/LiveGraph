@@ -1,7 +1,9 @@
+import sys
+sys.path.append("../")
 import pandas as pd
 from LiveGraph import LiveGraph
 
-lg = LiveGraph(plots=[2,1], figSize=(20, 10), maxWindow=1000)
+lg = LiveGraph(plots=[2,1], figSize=(20, 10), windowSize=1000)
 col = {'blue': '#1f77b4', 'orange': '#ff7f0e', 'green': '#2ca02c', 'red': '#d62728'}
 
 

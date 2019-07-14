@@ -7,10 +7,10 @@ def animate(i):
 	print('here1')
 
 class LiveGraph:
-	def __init__(self, dims, figSize, maxWindow=2500):
+	def __init__(self, plots, figSize, maxWindow=2500):
 
-		self.rows = dims[0]
-		self.cols = dims[1]
+		self.rows = plots[0]
+		self.cols = plots[1]
 		self.maxWindow = maxWindow
 		self.numPlots = self.rows * self.cols
 		self.currentX = []
@@ -35,7 +35,11 @@ class LiveGraph:
 		pylab.show(block=False)
 
 
-	def plot(self, data, channel=0, color='b', yLabel="No Label", xlim=0, ylim=0):
+	def plot(self, data, channel=0, color='b', yLabel=" ", xlim=0, ylim=0):
+		if hasattr(data, '__len__') and (not isinstance(data, str)):
+			pass
+		else:
+			data = np.array([data])
 		self.dataY[channel] = np.concatenate((self.dataY[channel], data))
 		if len(self.dataY[channel]) > self.maxWindow:
 			self.dataY[channel] = self.dataY[channel][-self.maxWindow:]
